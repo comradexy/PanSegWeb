@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <script>
+        function fetchImage() {
+            // 发送 GET 请求到指定 URL
+            fetch('http://localhost:5000/model/test/img/000000.png')
+                .then(response => response.json())  // 解析 JSON 响应
+                .then(data => {
+                    // 获取 base64 编码的图片数据
+                    const imageData = data.file_data;
+
+                    // 创建图像元素并设置其 src 属性为 base64 数据
+                    const imgElement = document.createElement('img');
+                    imgElement.src = `data:image/png;base64, ${imageData}`;
+
+                    // 将图像元素添加到页面中的指定位置
+                    const imageContainer = document.getElementById('image-container');
+                    imageContainer.innerHTML = '';  // 清空容器
+                    imageContainer.appendChild(imgElement);  // 添加图像元素
+                })
+                .catch(error => {
+                    console.error('Error fetching image:', error);
+                });
+        }
+    </script>
+</head>
+
+<body>
+<h1>测试页面</h1>
+<button onclick="fetchImage()">获取图片</button>
+<hr>
+<div id="image-container"></div>
+</body>
+
+</html>
