@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 设置ECharts选项
   function setOption(points) {
     option = {
-      backgroundColor: '#000',
+      backgroundColor: '#fff',
       title: {
         // text: '3D Point Cloud Visualization',
         left: 'center',
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
             color: getColor(point[3])
           }
         })),
-        symbolSize: 1.2
+        symbolSize: 2.0
       }]
     };
     myChart.setOption(option);
