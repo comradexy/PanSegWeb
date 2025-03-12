@@ -1,7 +1,7 @@
 <template>
   <div class="logo-container flex-center">
     <img class="logo-icon" src="/img/logo.png" />
-    <text v-if="!isCollapse">点云分割系统</text>
+    <text v-if="!isCollapse" class="title">点云分割系统</text>
   </div>
   <el-menu :default-active="$route.path" class="el-menu-vertical-demo" router unique-opened :collapse="isCollapse"
     @select="changeMenu">
@@ -84,6 +84,11 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 180;
 }
@@ -95,7 +100,7 @@ export default {
 }
 
 .logo-icon {
-  height: 40px;
+  height: 30px;
   /* scale: 1.0; */
   padding-right: 10px;
 }

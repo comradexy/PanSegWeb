@@ -1,24 +1,24 @@
 
 const routes = [
   {
-    path: '/formTemplate',
+    path: '/pointCloudSegmentation',
     id: 2000,
     name: 'formTemplate',
     meta: {
       title: '点云分割'
     },
     children: [{
-      path: 'formTemplate1',
+      path: 'offline',
       id: 2001,
-      name: 'formTemplate1',
+      name: 'offline',
       meta: {
         title: '离线分割',
       }
     },
     {
-      path: 'formTemplate2',
+      path: 'realtime',
       id: 2002,
-      name: 'formTemplate2',
+      name: 'realtime',
       meta: {
         title: '实时分割'
       }

@@ -4,8 +4,8 @@
  */
 /* -------------------------------------分割线-------------------------------------------- */
 import layout from '../layout/index.vue'
-import formTemplate1 from '../views/FormTemplate/template1.vue'
-import formTemplate2 from '../views/FormTemplate/template2.vue'
+import offlineSeg from '../views/PointCloudSegmentation/offlineSegmentation.vue'
+import realtimeSeg from '../views/PointCloudSegmentation/realtimeSegmentation.vue'
 import tableTemplate1 from '../views/TableTemplate/template1.vue'
 import tableTemplate2 from '../views/TableTemplate/template2.vue'
 import cardTemplate1 from '../views/CardTemplate/template1.vue'
@@ -16,8 +16,8 @@ import structures from '../views/Systems/structures.vue'
 
 const componentObj = {
   layout,
-  formTemplate1,
-  formTemplate2,
+  offline: offlineSeg,
+  realtime: realtimeSeg,
   tableTemplate1,
   tableTemplate2,
   cardTemplate1,
