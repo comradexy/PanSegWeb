@@ -16,8 +16,8 @@ import structures from '../views/Systems/structures.vue'
 
 const componentObj = {
   layout,
-  offline: offlineSeg,
-  realtime: realtimeSeg,
+  offlineSegmentation: offlineSeg,
+  realtimeSegmentation: realtimeSeg,
   tableTemplate1,
   tableTemplate2,
   cardTemplate1,
@@ -27,10 +27,10 @@ const componentObj = {
   structures
 }
 const iconList = {
-  formTemplate: 'Tickets',
-  tableTemplate: 'CopyDocument',
-  cardTemplate: 'Files',
-  systems: 'Tools'
+  pointCloudSegmentation: 'MagicStick',
+  tableTemplate: 'Edit',
+  cardTemplate: 'Monitor',
+  systems: 'Setting'
 }
 /**
  * 动态添加用户路由权限

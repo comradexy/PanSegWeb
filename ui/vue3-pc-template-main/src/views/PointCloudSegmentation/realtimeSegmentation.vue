@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  name: 'GridView',
+  name: 'realtimeSegmentation',
 };
 </script>
 

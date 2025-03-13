@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../layout/index.vue'
 import { getAuthRouters } from "@/router/authRouter";
 import {getDynamicRoutes} from '@/utils/getData.js'
@@ -13,7 +13,7 @@ const router = createRouter({
     {
       path: '/',
       name: '首页',
-      component: Layout, 
+      component: Layout,
       redirect: '/dashboard',
       meta: {
         staticRouter: true // 静态路由
@@ -58,7 +58,7 @@ router.beforeEach(async(to, from, next) => {
     }else {
       next()
     }
-    
+
   }
 })
 export default router

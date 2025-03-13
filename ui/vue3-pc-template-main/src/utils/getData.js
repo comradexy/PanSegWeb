@@ -3,22 +3,22 @@ const routes = [
   {
     path: '/pointCloudSegmentation',
     id: 2000,
-    name: 'formTemplate',
+    name: 'pointCloudSegmentation',
     meta: {
       title: '点云分割'
     },
     children: [{
-      path: 'offline',
+      path: 'offlineSegmentation',
       id: 2001,
-      name: 'offline',
+      name: 'offlineSegmentation',
       meta: {
         title: '离线分割',
       }
     },
     {
-      path: 'realtime',
+      path: 'realtimeSegmentation',
       id: 2002,
-      name: 'realtime',
+      name: 'realtimeSegmentation',
       meta: {
         title: '实时分割'
       }
