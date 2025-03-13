@@ -153,10 +153,12 @@ export default {
     },
 
     getIntensityColor(index) {
-      const val = this.intensity[index];
-      const normalized = Math.min(Math.max(val, 0), 1);
-      const gray = Math.floor(normalized * 255);
-      return `rgb(${gray},${gray},${gray})`;
+      const value = this.intensity[index];
+      const normalizedIntensity = Math.max(0, Math.min(1, value));
+      const hueCold = 255; // 蓝色
+      const hueHot = 0; // 红色
+      const hue = hueCold + (hueHot - hueCold) * normalizedIntensity;
+      return `hsl(${(hue + 360) % 360}, 100%, 50%)`;
     },
 
     getSemanticColor(index) {

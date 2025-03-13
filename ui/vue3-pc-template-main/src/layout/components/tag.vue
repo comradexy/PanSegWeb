@@ -8,7 +8,7 @@
         :key="item.name"
         @click.stop="switchRoute(item)"
       >
-        <div :underline="false" class="tag-title fz-12">
+        <div :underline="false" class="tag-title fz-14">
           {{ item.breadcrumbName }}
         </div>
         <el-icon
@@ -25,19 +25,19 @@
       placement="bottom-end"
       class="tag-item tag-active h-p-100 flex-center"
     >
-      <div class="flex-center fz-12">
+      <div class="flex-center fz-14">
         标签管理<el-icon class="el-icon--right"><arrow-down /></el-icon>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="reload"
-            ><span class="fz-12">刷新</span></el-dropdown-item
+            ><span class="fz-14">刷新</span></el-dropdown-item
           >
           <el-dropdown-item @click="closeOther"
-            ><span class="fz-12">关闭其他</span></el-dropdown-item
+            ><span class="fz-14">关闭其他</span></el-dropdown-item
           >
           <el-dropdown-item @click="closeAll"
-            ><span class="fz-12">关闭所有</span></el-dropdown-item
+            ><span class="fz-14">关闭所有</span></el-dropdown-item
           >
         </el-dropdown-menu>
       </template>
@@ -87,14 +87,14 @@ const closeAll = () => {
 <style scoped>
 .tag-container {
   z-index: 1;
-  height: 30px;
+  height: 40px;
   background: #fff;
   box-shadow: #d8d8d8 1px 1px 5px 1px;
   border-radius: 5px 5px 0 0;
 }
 
 .tag-item {
-  width: 80px;
+  width: 100px;
   height: 80%;
   border-radius: 3px;
   cursor: pointer;
@@ -105,7 +105,7 @@ const closeAll = () => {
   align-items: center;
 }
 .tag-active {
-  background-color: #409efc;
+  background-color: #2F5597;
   color: #fff;
 }
 .tag-normal {

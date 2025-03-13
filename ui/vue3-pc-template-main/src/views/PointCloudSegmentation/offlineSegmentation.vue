@@ -1,33 +1,91 @@
 <template>
   <div class="grid-view">
-    <!-- 使用 el-scrollbar 包裹内容 -->
     <el-scrollbar>
-      <el-row :gutter="20">
+      <el-row :gutter="20" class="grid-row">
         <el-col :span="12">
           <div class="grid-item">
             <h3>控制面板</h3>
             <p>Control Panel</p>
+            <div class="sub-item">
+              <el-row class="control-row">
+                <el-col style="flex: none;">
+                  <el-button type="primary">上传点云</el-button>
+                </el-col>
+                <el-col style="flex: 4;">
+                  <el-input placeholder="点云文件名" readonly></el-input>
+                </el-col>
+                <el-col style="flex: 3;">
+                  <el-progress :text-inside="true" :stroke-width="24" :percentage="70"
+                    id="upload-progress"></el-progress>
+                </el-col>
+              </el-row>
+              <el-row class="control-row">
+                <el-col style="flex: none;">
+                  <el-button type="primary">点云预览</el-button>
+                </el-col>
+                <el-col style="flex: none;">
+                  <el-button type="primary">语义分割</el-button>
+                </el-col>
+                <el-col style="flex: none;">
+                  <el-button type="primary">实例分割</el-button>
+                </el-col>
+                <el-col style="flex: 3;">
+                  <el-progress :text-inside="true" :stroke-width="24" :percentage="10"
+                    id="upload-progress"></el-progress>
+                </el-col>
+              </el-row>
+              <el-row class="control-row">
+                <el-col style="flex: none;">
+                  <el-button type="primary">选择路径</el-button>
+                </el-col>
+                <el-col style="flex: 1;">
+                  <el-input placeholder="保存路径" readonly></el-input>
+                </el-col>
+              </el-row>
+              <el-row class="control-row">
+                <el-col style="flex: none;">
+                  <el-button type="primary">保存结果</el-button>
+                </el-col>
+                <el-col style="flex: 1;">
+                  <el-progress :text-inside="true" :stroke-width="24" :percentage="50"
+                    id="upload-progress"></el-progress>
+                </el-col>
+              </el-row>
+              <el-row class="control-row">
+                <el-col style="flex: 1;">
+                  <p>--- 操作日志 ---</p>
+                  <el-input type="textarea" :autosize="{ minRows: 3, maxRows: 3 }" readonly>
+                  </el-input>
+                </el-col>
+              </el-row>
+            </div>
           </div>
         </el-col>
+
         <el-col :span="12">
           <div class="grid-item">
             <h3>点云预览</h3>
             <p>Point Cloud Preview</p>
+            <div ref="chart" class="chart-container"></div>
           </div>
         </el-col>
       </el-row>
 
-      <el-row :gutter="20">
+      <el-row :gutter="20" class="grid-row">
         <el-col :span="12">
           <div class="grid-item">
             <h3>语义分割</h3>
             <p>Semantic Segmentation</p>
+
+
           </div>
         </el-col>
         <el-col :span="12">
           <div class="grid-item">
             <h3>实例分割</h3>
             <p>Instance Segmentation</p>
+
+
           </div>
         </el-col>
       </el-row>
@@ -37,44 +95,61 @@
 
 <script>
 export default {
-  name: 'GridView',
+  name: 'OfflineSegmentation',
 };
 </script>
 
 <style scoped>
 .grid-view {
-  height: 100vh; /* 设置视图高度为窗口高度 */
+  height: calc(100vh - 100px);
+  overflow: auto;
   padding: 20px;
-  box-sizing: border-box; /* 防止 padding 影响高度计算 */
+  box-sizing: border-box;
 }
 
 .grid-item {
-  height: 320px;
+  height: 420px;
   background-color: #ffffff;
   border: 1px solid #ebeef5;
   border-radius: 4px;
   padding: 10px;
   text-align: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  /* margin-bottom: 10px; */
+}
+
+.sub-item {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.grid-row {
+  padding: 0;
+  margin-bottom: 20px;
 }
 
 h3 {
-  margin-bottom: 10px;
+  margin: 6px 0 6px;
   color: #303133;
 }
 
 p {
+  margin: 6px 0 6px;
   color: #606266;
 }
 
-/* 自定义滚动条样式 */
 .el-scrollbar__bar.is-vertical {
-  width: 6px; /* 滚动条宽度 */
+  width: 6px;
 }
 
 .el-scrollbar__thumb {
-  background-color: rgba(144, 147, 153, 0.3); /* 滚动条颜色 */
-  border-radius: 3px; /* 滚动条圆角 */
+  background-color: rgba(144, 147, 153, 0.3);
+  border-radius: 3px;
 }
 </style>

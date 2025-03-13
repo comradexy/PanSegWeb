@@ -10,7 +10,7 @@
       </el-aside>
       <el-container>
         <el-header class="common-header flex align-center">
-          <el-icon :size="24" color="#409efc" @click="isCollapse = !isCollapse">
+          <el-icon :size="24" color="#2F5597" @click="isCollapse = !isCollapse">
             <Expand v-if="isCollapse" />
             <Fold v-else />
           </el-icon>

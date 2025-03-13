@@ -5,7 +5,9 @@
     class="h-p-100 flex-center"
   >
     <div class="flex-center">
-      Admin <el-icon size="18" color="#409efc"><Avatar /></el-icon>
+      <el-icon size="20" color="#2F5597"><Avatar /></el-icon>
+      <span style="width: 6px;"></span>
+      Admin
     </div>
     <template #dropdown>
       <el-dropdown-menu>
