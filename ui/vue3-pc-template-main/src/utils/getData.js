@@ -20,7 +20,7 @@ const routes = [
       id: 2002,
       name: 'realtimeSegmentation',
       meta: {
-        title: '实时分割'
+        title: '在线分割'
       }
     }
     ]
@@ -37,7 +37,7 @@ const routes = [
       id: 3001,
       name: 'tableTemplate1',
       meta: {
-        title: '示例1',
+        title: '模型选择',
       }
     },
     {
@@ -45,7 +45,7 @@ const routes = [
       id: 3002,
       name: 'tableTemplate2',
       meta: {
-        title: '示例2',
+        title: '参数设置',
       }
     }
     ]
