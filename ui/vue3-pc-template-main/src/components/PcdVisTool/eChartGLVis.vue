@@ -115,10 +115,11 @@ export default {
     // 生成可视化数据
     generateVisualizationData() {
       console.log('正在生成可视化数据...');
-      return this.points.map((point, index) => ({
+      const visData = this.points.map((point, index) => ({
         value: point,
         color: this.getColor(index)
       }));
+      return visData;
     },
 
     // 颜色计算逻辑
@@ -162,6 +163,7 @@ export default {
 
     // 更新可视化
     updateVisualization() {
+      this.chart.clear();
       const visData = this.generateVisualizationData();
       console.log('可视化数据生成成功，正在渲染...');
       if (this.points.length > 0) {
@@ -179,6 +181,6 @@ export default {
   height: 100%;
   background: #000;
   border: 1px solid #333;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 </style>
