@@ -7,18 +7,18 @@
             <h3>控制面板</h3>
             <div class="sub-item">
               <!-- <el-row class="control-row"> -->
-              <el-form :inline="true" :model="dataSource" class="data-source">
+              <el-form :inline="true" v-model="dataSource" class="data-source">
                 <el-form-item>
-                  <el-button type="info">配置数据源</el-button>
+                  <el-button color="#2f5597" @click="connectDataSource">配置数据源</el-button>
                 </el-form-item>
                 <el-form-item label="IP">
-                  <el-input placeholder="例如：127.0.0.1" style="width: 128px;"></el-input>
+                  <el-input placeholder="例如：127.0.0.1" style="width: 128px;" v-model="dataSource.ip"></el-input>
                 </el-form-item>
                 <el-form-item label="端口">
-                  <el-input placeholder="例如：8080" style="width: 128px;"></el-input>
+                  <el-input placeholder="例如：8080" style="width: 128px;" v-model="dataSource.port"></el-input>
                 </el-form-item>
                 <el-form-item label="接口" style="flex: 1;">
-                  <el-input placeholder="例如：/api" ></el-input>
+                  <el-input placeholder="例如：/api" v-model="dataSource.api"></el-input>
                 </el-form-item>
               </el-form>
               <!-- </el-row> -->
@@ -42,34 +42,41 @@
               </el-row>
               <el-row class="control-row">
                 <el-col style="flex: none;">
-                  <el-button-group>
-                    <el-button color="#2f5597" icon="ArrowLeft">上一帧</el-button>
-                    <el-button color="#2f5597">下一帧<el-icon class="el-icon--right">
+                  <el-button-group v-if="controlStatus !== 'init'">
+                    <el-button @click="prevFrame" color="#2f5597" icon="ArrowLeft">上一帧</el-button>
+                    <el-button @click="nextFrame" color="#2f5597">下一帧<el-icon class="el-icon--right">
+                        <ArrowRight />
+                      </el-icon>
+                    </el-button>
+                  </el-button-group>
+                  <el-button-group v-else>
+                    <el-button disabled color="#2f5597" icon="ArrowLeft">上一帧</el-button>
+                    <el-button disabled color="#2f5597">下一帧<el-icon class="el-icon--right">
                         <ArrowRight />
                       </el-icon>
                     </el-button>
                   </el-button-group>
                 </el-col>
                 <el-col style="flex: none;">
-                  <el-button @click="redirectToDownloadUrl" v-if="controlStatus === 'rendered'">保存结果</el-button>
-                  <el-button @click="redirectToDownloadUrl" disabled v-else>保存点云</el-button>
+                  <el-button color="#2f5597" @click="downloadPcd" v-if="controlStatus === 'rendered'">保存结果</el-button>
+                  <el-button color="#2f5597" disabled v-else>保存点云</el-button>
                 </el-col>
                 <el-col style="flex: none;">
-                  <el-button @click="redirectToDownloadUrl" v-if="controlStatus === 'rendered'">保存结果</el-button>
-                  <el-button @click="redirectToDownloadUrl" disabled v-else>保存结果</el-button>
+                  <el-button color="#2f5597" @click="downloadLabel" v-if="controlStatus === 'rendered'">保存结果</el-button>
+                  <el-button color="#2f5597" disabled v-else>保存结果</el-button>
                 </el-col>
                 <el-col style="flex: 1;">
                   <el-text v-if="controlStatus === 'init'" class="contr-status"><el-icon style="padding-right: 8px;">
                       <InfoFilled />
-                    </el-icon>点云文件未上传，请先上传。</el-text>
+                    </el-icon>数据源未配置，请先配置。</el-text>
                   <el-text v-else-if="controlStatus === 'uploaded'" class="contr-status"><el-icon
                       style="padding-right: 8px;">
                       <InfoFilled />
-                    </el-icon>点云文件已上传，当前点云预览与分割可用。</el-text>
+                    </el-icon>文件接收成功，当前帧：{{ frameId }}。</el-text>
                   <el-text v-else-if="controlStatus === 'rendered'" class="contr-status"><el-icon
                       style="padding-right: 8px;">
                       <InfoFilled />
-                    </el-icon>点云文件已完成分割，可选择路径保存结果。</el-text>
+                    </el-icon>点云文件已完成分割，可选择路径保存点云/结果。</el-text>
                 </el-col>
               </el-row>
               <el-row class="control-row">
@@ -125,17 +132,15 @@ export default {
   data() {
     return {
       log: '',
-      uploadProgress: 0,
       renderProgress: 0,
-      saveProgress: 0,
-      fileName: '',
       frameId: '',
+      maxFrameId: '000009',
+      minFrameId: '000000',
       controlStatus: 'init',
-
       dataSource: {
-        ip: '',
-        port: '',
-        api: '',
+        ip: '127.0.0.1',
+        port: '8484',
+        api: '/api/realtime',
       },
     };
   },
@@ -145,18 +150,37 @@ export default {
   },
 
   methods: {
-    triggerFileInput() {
-      this.$refs.fileInput.click();
+    async connectDataSource() {
+      this.log += `正在连接数据源...\n`;
+      this.frameId = '000000';
+      await this.loadData();
+      this.log += `数据源连接成功。\n`;
+    },
+
+    async nextFrame() {
+      if (this.frameId < this.maxFrameId) {
+        this.frameId = (parseInt(this.frameId) + 1).toString().padStart(6, '0');
+        this.log += `正在加载下一帧...\n`;
+        this.loadData();
+        this.log += `加载成功，当前帧为：${this.frameId}\n`;
+      }else{
+        this.log += `当前帧为最后一帧，无法继续。\n`;
+      }
+    },
+
+    async prevFrame() {
+      if (this.frameId > this.minFrameId) {
+        this.frameId = (parseInt(this.frameId) - 1).toString().padStart(6, '0');
+        this.log += `正在加载上一帧...\n`;
+        this.loadData();
+        this.log += `加载成功，当前帧为：${this.frameId}\n`;
+      }else{
+        this.log += `当前帧为第一帧，无法继续。\n`;
+      }
     },
 
     async loadData() {
-      this.uploadProgress = 0;
       try {
-        const file = this.$refs.fileInput.files[0];
-        this.fileName = file.name;
-        this.frameId = file.name.split('.')[0];
-        this.log += `开始上传点云数据，文件名 ${this.fileName}...\n`;
-
         const [binData, labelData] = await Promise.all([
           fetch(`https://escapist-bucket-dev.oss-cn-hangzhou.aliyuncs.com/${this.frameId}.bin`).then((r) =>
             r.arrayBuffer()
@@ -166,25 +190,14 @@ export default {
           ),
         ]);
 
-        this.uploadProgress += 20;
         this.$refs.chart1.setData(binData, labelData);
         this.$refs.chart2.setData(binData, labelData);
         this.$refs.chart3.setData(binData, labelData);
-        this.uploadProgress += 10;
 
-        const timer = setInterval(() => {
-          if (this.uploadProgress < 100) {
-            this.uploadProgress += 1;
-          } else {
-            clearInterval(timer);
-            this.log += `加载数据成功，数据大小为 ${(binData.byteLength / (1024 * 1024)).toFixed(3)} MB。\n`;
-          }
-        }, 2);
         this.controlStatus = 'uploaded';
       } catch (error) {
         this.log += `加载数据失败，错误信息为：${error.message}。\n`;
         console.error(error);
-        this.uploadProgress = 0;
       }
     },
 
@@ -265,10 +278,13 @@ export default {
       this.controlStatus = 'rendered';
     },
 
-    redirectToDownloadUrl() {
-      window.location.href = `https://escapist-bucket-dev.oss-cn-hangzhou.aliyuncs.com/${this.frameId}.label`;
+    downloadPcd() {
+      window.location.href = `https://escapist-bucket-dev.oss-cn-hangzhou.aliyuncs.com/${this.frameId}.bin`;
     },
 
+    downloadLabel() {
+      window.location.href = `https://escapist-bucket-dev.oss-cn-hangzhou.aliyuncs.com/${this.frameId}.label`;
+    },
   },
 };
 

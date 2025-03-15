@@ -7,7 +7,7 @@
           <el-row style="padding-left: 20px;">
             <el-form :inline="true" :model="paramConfig" class="param-config-form">
               <el-form-item>
-                <el-button @click="submitParamConfig" style="width: 100px;">保存设置</el-button>
+                <el-button @click="submitParamConfig" style="width: 100px;" color="#2f5597">保存设置</el-button>
               </el-form-item>
               <el-form-item label="Batch Size">
                 <el-input v-model="paramConfig.batchSize" placeholder="默认: 1" clearable />
@@ -29,7 +29,7 @@
           <el-row style="padding-left: 20px;">
             <el-form :inline="true" :model="modelSource" class="model-source">
               <el-form-item>
-                <el-button style="width: 100px;">配置计算源</el-button>
+                <el-button style="width: 100px;" color="#2f5597">配置计算源</el-button>
               </el-form-item>
               <el-form-item label="IP地址">
                 <el-input v-model="modelSource.ip" placeholder="例如：127.0.0.1"></el-input>
@@ -259,7 +259,8 @@ export default {
   },
 
   methods: {
-    async addSemModel() {
+    async submitParamConfig () {
+
     },
 
   },
