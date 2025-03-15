@@ -260,6 +260,11 @@ export default {
   box-sizing: border-box;
 }
 
+.grid-row {
+  padding: 0;
+  margin-bottom: 20px;
+}
+
 .grid-item {
   height: 420px;
   background-color: #ffffff;
@@ -280,11 +285,6 @@ export default {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 20px;
-}
-
-.grid-row {
-  padding: 0;
   margin-bottom: 20px;
 }
 

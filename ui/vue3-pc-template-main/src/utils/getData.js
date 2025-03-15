@@ -33,19 +33,19 @@ const routes = [
       title: '模型管理'
     },
     children: [{
-      path: 'tableTemplate1',
+      path: 'modelSelect',
       id: 3001,
-      name: 'tableTemplate1',
+      name: 'modelSelect',
       meta: {
-        title: '模型选择',
+        title: '模型设置',
       }
     },
     {
-      path: 'tableTemplate2',
+      path: 'paramSet',
       id: 3002,
-      name: 'tableTemplate2',
+      name: 'paramSet',
       meta: {
-        title: '参数设置',
+        title: '其他设置',
       }
     }
     ]
@@ -81,14 +81,6 @@ const routes = [
         title: '计算端',
       }
     },
-      // {
-      //     path: 'cardTemplate2',
-      //     id: 1004,
-      //     name: 'cardTemplate2',
-      //     meta: {
-      //         title: 'echarts卡片'
-      //     }
-      // }
     ]
   },
   {
@@ -103,7 +95,7 @@ const routes = [
       id: 4001,
       name: 'structures',
       meta: {
-        title: '组织架构',
+        title: '权限管理',
       }
     }
     ]

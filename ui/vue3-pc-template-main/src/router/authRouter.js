@@ -6,8 +6,8 @@
 import layout from '../layout/index.vue'
 import offlineSeg from '../views/PointCloudSegmentation/offlineSegmentation.vue'
 import realtimeSeg from '../views/PointCloudSegmentation/realtimeSegmentation.vue'
-import tableTemplate1 from '../views/TableTemplate/template1.vue'
-import tableTemplate2 from '../views/TableTemplate/template2.vue'
+import modelSelect from '../views/TableTemplate/modelSelect.vue'
+import paramSet from '../views/TableTemplate/paramSet.vue'
 import cardTemplate1 from '../views/CardTemplate/template1.vue'
 import cardTemplate2 from '../views/CardTemplate/template2.vue'
 import cardTemplate3 from '../views/CardTemplate/template3.vue'
@@ -18,8 +18,8 @@ const componentObj = {
   layout,
   offlineSegmentation: offlineSeg,
   realtimeSegmentation: realtimeSeg,
-  tableTemplate1,
-  tableTemplate2,
+  modelSelect: modelSelect,
+  paramSet: paramSet,
   cardTemplate1,
   cardTemplate2,
   cardTemplate3,
