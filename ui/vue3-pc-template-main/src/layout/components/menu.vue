@@ -26,26 +26,6 @@
   </el-menu>
 </template>
 
-<!-- <script setup>
-import router from "@/router";
-import { useAuthRouterStore } from "@/stores/authRouter.js";
-import { useTagStore } from "@/stores/tagList.js";
-const tagStore = useTagStore();
-const routerOptions = router.getRoutes()
-
-const authRouterStore = useAuthRouterStore();
-const props = defineProps(["isCollapse"]);
-const routerList = authRouterStore.routerList;
-const changeMenu = (menu) => {
-  let obj = routerOptions.find(val => val.path == menu)
-  tagStore.addTagList({
-    name: obj.path,
-    breadcrumbName: obj.meta.breadcrumbName
-  })
-
-}
-</script> -->
-
 <script>
 import router from "@/router";
 import { useAuthRouterStore } from "@/stores/authRouter.js";

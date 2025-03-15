@@ -58,16 +58,18 @@
                   <el-button @click="redirectToDownloadUrl" v-if="controlStatus === 'rendered'">保存结果</el-button>
                   <el-button @click="redirectToDownloadUrl" disabled v-else>保存结果</el-button>
                 </el-col>
-                <el-col style="flex: none;">
-                  <p style="font-size: 14px; margin:6px 8px 6px;">当前状态：</p>
-                </el-col>
-                <el-col style="flex: 1; padding-right: 30px;">
-                  <el-input v-if="controlStatus === 'init'" readonly class="contr-status"
-                    placeholder="点云文件未上传，请先上传。"></el-input>
-                  <el-input v-else-if="controlStatus === 'uploaded'" readonly class="contr-status"
-                    placeholder="点云文件已上传，当前点云预览与分割可用。"></el-input>
-                  <el-input v-else-if="controlStatus === 'rendered'" readonly class="contr-status"
-                    placeholder="点云文件已完成分割，可选择路径保存结果。"></el-input>
+                <el-col style="flex: 1;">
+                  <el-text v-if="controlStatus === 'init'" class="contr-status"><el-icon style="padding-right: 8px;">
+                      <InfoFilled />
+                    </el-icon>点云文件未上传，请先上传。</el-text>
+                  <el-text v-else-if="controlStatus === 'uploaded'" class="contr-status"><el-icon
+                      style="padding-right: 8px;">
+                      <InfoFilled />
+                    </el-icon>点云文件已上传，当前点云预览与分割可用。</el-text>
+                  <el-text v-else-if="controlStatus === 'rendered'" class="contr-status"><el-icon
+                      style="padding-right: 8px;">
+                      <InfoFilled />
+                    </el-icon>点云文件已完成分割，可选择路径保存结果。</el-text>
                 </el-col>
               </el-row>
               <el-row class="control-row">
@@ -325,10 +327,6 @@ h3 {
 .pcd-vis {
   height: 85%;
   padding: 10px;
-}
-
-.control-status {
-  padding-right: 20px;
 }
 
 .data-source {

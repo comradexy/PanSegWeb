@@ -1,4 +1,3 @@
-
 <template>
   <div class="common-layout h-p-100 w-p-100">
     <el-container class="h-p-100 w-p-100">
