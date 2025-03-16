@@ -3,8 +3,9 @@
     <el-row :gutter="20" class="grid-row">
       <el-col :span="24">
         <div class="grid-item">
-          <h3>参数设置</h3>
-          <el-row style="padding-left: 20px;">
+          <el-text tag="b" class="grid-item-title">参数设置</el-text>
+          <el-divider class="title-divider" />
+          <el-row style="padding-left: 20px; padding-top: 10px;">
             <el-form :inline="true" :model="paramConfig" class="param-config-form">
               <el-form-item>
                 <el-button @click="submitParamConfig" style="width: 100px;" color="#2f5597">保存设置</el-button>
@@ -47,41 +48,20 @@
     </el-row>
 
     <el-row :gutter="20" class="grid-row">
-      <el-col :span="8">
+      <el-col :span="12">
         <div class="grid-item">
-          <h3>语义分割</h3>
+          <el-text tag="b" class="grid-item-title">语义分割</el-text>
+          <el-divider class="title-divider" />
           <el-table :data="semModels" style="width: 100%; margin-bottom: 10px;" max-height="500">
-            <el-table-column fixed prop="modelName" label="模型" width="120" />
-            <el-table-column prop="mIoU" label="精度 (%)" width="110" />
-            <el-table-column prop="delay" label="延迟 (ms)" width="110" />
-            <el-table-column prop="priority" label="优先级" width="80">
+            <el-table-column fixed prop="modelName" label="模型" style="width: 20%;" />
+            <el-table-column prop="mIoU" label="精度 (%)" style="width: 20%;" />
+            <el-table-column prop="delay" label="延迟 (ms)" style="width: 20%;" />
+            <el-table-column prop="priority" label="优先级" style="width: 20%;">
               <template #default="scope">
-                <el-input v-model="scope.row.priority" />
+                <el-input v-model="scope.row.priority" style="padding-right: 50px;" />
               </template>
             </el-table-column>
-            <el-table-column prop="active" label="启用">
-              <template #default="scope">
-                <el-switch v-model="scope.row.active"
-                  style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
-                  @change="changeActive(scope.row)" />
-              </template>
-            </el-table-column>
-          </el-table>
-        </div>
-      </el-col>
-      <el-col :span="8">
-        <div class="grid-item">
-          <h3>实例分割</h3>
-          <el-table :data="instModels" style="width: 100%; margin-bottom: 10px;" max-height="500">
-            <el-table-column fixed prop="modelName" label="模型" width="120" />
-            <el-table-column prop="mIoU" label="精度 (%)" width="110" />
-            <el-table-column prop="delay" label="延迟 (ms)" width="110" />
-            <el-table-column prop="priority" label="优先级" width="80">
-              <template #default="scope">
-                <el-input v-model="scope.row.priority" />
-              </template>
-            </el-table-column>
-            <el-table-column prop="active" label="启用">
+            <el-table-column prop="active" label="启用" style="width: 20%;">
               <template #default="scope">
                 <el-switch v-model="scope.row.active"
                   style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
@@ -91,19 +71,20 @@
           </el-table>
         </div>
       </el-col>
-      <el-col :span="8">
+      <el-col :span="12">
         <div class="grid-item">
-          <h3>全景分割</h3>
+          <el-text tag="b" class="grid-item-title">全景分割</el-text>
+          <el-divider class="title-divider" />
           <el-table :data="panModels" style="width: 100%; margin-bottom: 10px;" max-height="500">
-            <el-table-column fixed prop="modelName" label="模型" width="120" />
-            <el-table-column prop="mIoU" label="精度 (%)" width="110" />
-            <el-table-column prop="delay" label="延迟 (ms)" width="110" />
-            <el-table-column prop="priority" label="优先级" width="80">
+            <el-table-column fixed prop="modelName" label="模型" style="width: 20%;" />
+            <el-table-column prop="pq" label="精度 (%)" style="width: 20%;" />
+            <el-table-column prop="delay" label="延迟 (ms)" style="width: 20%;" />
+            <el-table-column prop="priority" label="优先级" style="width: 20%;">
               <template #default="scope">
-                <el-input v-model="scope.row.priority" />
+                <el-input v-model="scope.row.priority" style="padding-right: 50px;" />
               </template>
             </el-table-column>
-            <el-table-column prop="active" label="启用">
+            <el-table-column prop="active" label="启用" style="width: 20%;">
               <template #default="scope">
                 <el-switch v-model="scope.row.active"
                   style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
@@ -133,106 +114,95 @@ export default {
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'SPVNAS',
+          mIoU: '66.4',
+          delay: '259',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'MinkowskiNet',
+          mIoU: '63.1',
+          delay: '294',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'RandLA-Net',
+          mIoU: '53.9',
+          delay: '880',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'PVCNN',
+          mIoU: '39.0',
+          delay: '146',
+          priority: '1',
+          active: true,
+        },
+        {
+          modelName: 'SalsaNext',
+          mIoU: '59.5',
+          delay: '71',
+          priority: '1',
+          active: true,
+        },
+        {
+          modelName: 'PolarNet',
+          mIoU: '57.2',
+          delay: '62',
           priority: '1',
           active: true,
         },
       ],
-
-      instModels: [
-        {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
-          priority: '1',
-          active: true,
-        },
-        {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
-          priority: '1',
-          active: true,
-        },
-        {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
-          priority: '1',
-          active: true,
-        },
-        {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
-          priority: '1',
-          active: true,
-        },
-        {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
-          priority: '1',
-          active: true,
-        },
-      ],
-
       panModels: [
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'FP3Seg',
+          pq: '57.7',
+          delay: '317',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'CPSeg',
+          pq: '56.9',
+          delay: '70',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'SMAC-Seg',
+          pq: '56.1',
+          delay: '99',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'LPSAD',
+          pq: '38.0',
+          delay: '85',
           priority: '1',
           active: true,
         },
         {
-          modelName: 'EPC-Net',
-          mIoU: '68.8',
-          delay: '273',
+          modelName: 'GP-S3Net',
+          pq: '60.0',
+          delay: '317',
+          priority: '1',
+          active: true,
+        },
+        {
+          modelName: 'EfficientLPS',
+          pq: '57.4',
+          delay: '213',
+          priority: '1',
+          active: true,
+        },
+        {
+          modelName: 'DS-Net',
+          pq: '55.9',
+          delay: '294',
           priority: '1',
           active: true,
         },
@@ -259,9 +229,17 @@ export default {
   },
 
   methods: {
-    async submitParamConfig () {
+    async submitParamConfig() {
 
     },
+
+    async changeActive(active) {
+      if (active) {
+        active = false;
+      } else {
+        active = true;
+      }
+    }
 
   },
 };
@@ -304,9 +282,13 @@ export default {
   margin-bottom: 20px;
 }
 
-h3 {
-  margin: 6px 0 6px;
+.grid-item-title {
   color: #303133;
+  font-size: large;
+}
+
+.title-divider {
+  margin: 8px 0 12px;
 }
 
 .el-scrollbar__bar.is-vertical {
