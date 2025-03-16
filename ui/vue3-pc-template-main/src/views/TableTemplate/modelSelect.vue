@@ -64,7 +64,7 @@
             <el-table-column prop="active" label="启用" style="width: 20%;">
               <template #default="scope">
                 <el-switch v-model="scope.row.active"
-                  style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+                  style="--el-switch-on-color: #13ce66; --el-switch-off-color: #d0d0d0"
                   @change="changeActive(scope.row)" />
               </template>
             </el-table-column>
@@ -87,7 +87,7 @@
             <el-table-column prop="active" label="启用" style="width: 20%;">
               <template #default="scope">
                 <el-switch v-model="scope.row.active"
-                  style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
+                  style="--el-switch-on-color: #13ce66; --el-switch-off-color: #d0d0d0"
                   @change="changeActive(scope.row)" />
               </template>
             </el-table-column>
@@ -104,7 +104,6 @@ export default {
 
   data() {
     return {
-      log: '',
       semModels: [
         {
           modelName: 'EPC-Net',
@@ -118,28 +117,28 @@ export default {
           mIoU: '66.4',
           delay: '259',
           priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'MinkowskiNet',
           mIoU: '63.1',
           delay: '294',
           priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'RandLA-Net',
           mIoU: '53.9',
           delay: '880',
           priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'PVCNN',
           mIoU: '39.0',
           delay: '146',
           priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'SalsaNext',
@@ -153,7 +152,7 @@ export default {
           mIoU: '57.2',
           delay: '62',
           priority: '1',
-          active: true,
+          active: false,
         },
       ],
       panModels: [
@@ -176,35 +175,35 @@ export default {
           pq: '56.1',
           delay: '99',
           priority: '1',
-          active: true,
-        },
-        {
-          modelName: 'LPSAD',
-          pq: '38.0',
-          delay: '85',
-          priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'GP-S3Net',
           pq: '60.0',
-          delay: '317',
+          delay: '270',
           priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'EfficientLPS',
           pq: '57.4',
           delay: '213',
           priority: '1',
-          active: true,
+          active: false,
         },
         {
           modelName: 'DS-Net',
           pq: '55.9',
           delay: '294',
           priority: '1',
-          active: true,
+          active: false,
+        },
+        {
+          modelName: 'LPSAD',
+          pq: '38.0',
+          delay: '85',
+          priority: '1',
+          active: false,
         },
       ],
 

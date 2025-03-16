@@ -8,7 +8,7 @@
             <div class="sub-item">
               <el-row class="control-row">
                 <el-col style="flex: none;">
-                  <el-button @click="triggerFileInput">上传点云</el-button>
+                  <el-button @click="triggerFileInput" color="#2f5597">上传点云</el-button>
                   <input type="file" ref="fileInput" style="display: none" accept=".bin" @change="loadData" />
                 </el-col>
                 <el-col style="flex: 4;">
@@ -39,8 +39,9 @@
               </el-row>
               <el-row class="control-row">
                 <el-col style="flex: none;">
-                  <el-button @click="redirectToDownloadUrl" v-if="controlStatus === 'rendered'">保存结果</el-button>
-                  <el-button @click="redirectToDownloadUrl" disabled v-else>保存结果</el-button>
+                  <el-button @click="redirectToDownloadUrl" v-if="controlStatus === 'rendered'"
+                    color="#2f5597">保存结果</el-button>
+                  <el-button @click="redirectToDownloadUrl" disabled v-else color="#2f5597">保存结果</el-button>
                 </el-col>
                 <el-col style="flex: 1;">
                   <el-text v-if="controlStatus === 'init'" class="contr-status"><el-icon style="padding-right: 8px;">
